@@ -46,4 +46,10 @@ Exact values: sparse linear solves and matrix-exponential actions; derivatives b
 | `tf_power.py`, `tf_power_A.py` | §7.4, Table 6 | cost of a dynamic T-F test with hypothesised and estimated conjugates |
 | `tr_signal_strength.py` | §7 | exact size of the time-asymmetry signal |
 
-License: [[to be chosen, e.g. MIT]].
+## LLM statement
+The authors used Claude to assist with writing the verification and simulation scripts. The authors reviewed and verified all content and take full responsibility for it.
+
+### License: MIT
+
+
+
