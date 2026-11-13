@@ -1,0 +1,2 @@
+FCFS: <n>=1.9250  Var(n)=4.8140  static response=6.0083  unexplained fraction of score by n = 5.027e-03  max |pred - exact| / static over t<=20 = 1.513e-01  (t=1: exact 0.6417, pred 0.5544)  P(n=NMAX)~1.7e-25
+PS: <n>=2.3333  Var(n)=7.7778  static response=7.7778  unexplained fraction of score by n = 3.295e-09  max |pred - exact| / static over t<=20 = 5.910e-11  (t=1: exact 0.6941, pred 0.6941)  P(n=NMAX)~7.7e-20

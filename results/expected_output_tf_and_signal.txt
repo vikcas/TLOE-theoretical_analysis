@@ -1,0 +1,21 @@
+=== tr_signal_strength.py
+K2=1: tau_int=114.67  E[N]=64.46  FDT bias (sup/chi)=0.119  static bias=0.254
+   max standardized indicator asym: t=0.5: -0.0552 (N=10,11), t=1: -0.0601 (N=2,3), t=2: -0.0326 (N=0,1), t=4: -0.0163 (N=0,2), t=8: -0.0090 (N=0,2), t=16: -0.0046 (N=0,3)
+K2=2: tau_int=51.37  E[N]=4.87  FDT bias (sup/chi)=0.129  static bias=0.185
+   max standardized indicator asym: t=0.5: -0.0167 (N=10,11), t=1: -0.0237 (N=10,11), t=2: -0.0192 (N=3,4), t=4: -0.0122 (N=4,6), t=8: -0.0072 (N=11,12), t=16: -0.0048 (N=11,12)
+K2=3: tau_int=16.99  E[N]=3.19  FDT bias (sup/chi)=0.111  static bias=0.118
+   max standardized indicator asym: t=0.5: -0.0066 (N=10,11), t=1: -0.0095 (N=10,11), t=2: -0.0116 (N=9,11), t=4: -0.0107 (N=11,12), t=8: -0.0075 (N=11,12), t=16: -0.0047 (N=10,12)
+=== tf_power.py
+B3 B = N (hypothesised)   delta=0.1: lag 4.00 tau, |bias| 1.253, sd 4.35, m = 9,425, telemetry ~ 65,978 tau_int
+B3 B = N (hypothesised)   delta=0.2: lag 4.00 tau, |bias| 1.253, sd 4.35, m = 2,356, telemetry ~ 16,494 tau_int
+B3 B = B^Y (estimated)    delta=0.1: lag 0.07 tau, |bias| 0.072, sd 1.47, m = 329,235, telemetry ~ 1,010,751 tau_int
+B3 B = B^Y (estimated)    delta=0.2: lag 0.07 tau, |bias| 0.072, sd 1.47, m = 82,309, telemetry ~ 252,688 tau_int
+B2 B = N (hypothesised)   delta=0.1: lag 4.00 tau, |bias| 5.168, sd 6.77, m = 1,344, telemetry ~ 9,405 tau_int
+B2 B = N (hypothesised)   delta=0.2: lag 4.00 tau, |bias| 5.168, sd 6.77, m = 336, telemetry ~ 2,351 tau_int
+B2 B = B^Y (estimated)    delta=0.1: lag 0.02 tau, |bias| 0.094, sd 1.35, m = 161,116, telemetry ~ 486,571 tau_int
+B2 B = B^Y (estimated)    delta=0.2: lag 0.02 tau, |bias| 0.094, sd 1.35, m = 40,279, telemetry ~ 121,643 tau_int
+=== tf_power_A.py
+A B = N (hypothesised)   delta=0.1: lag 4.00 tau, |bias| 17.554, sd 7.29, m = 135, telemetry ~ 946 tau_int
+A B = N (hypothesised)   delta=0.2: lag 4.00 tau, |bias| 17.554, sd 7.29, m = 34, telemetry ~ 237 tau_int
+A B = B^Y (estimated)    delta=0.1: lag 0.56 tau, |bias| 3.190, sd 3.97, m = 1,217, telemetry ~ 4,331 tau_int
+A B = B^Y (estimated)    delta=0.2: lag 0.56 tau, |bias| 3.190, sd 3.97, m = 304, telemetry ~ 1,083 tau_int

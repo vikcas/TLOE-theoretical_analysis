@@ -1,0 +1,9 @@
+(1) buffer 3: 52 states with n1<=12; smallest difference in log-probability movement between two distinct states = 3.417e-03
+    closest pair: (11, 2) and (12, 0)
+(2) buffer | static bias of prediction with B=N | conjugate variance not explained by N | P(stage 2 full)
+       2 |   0.1845 |  5.261e-03 | 0.3057
+       3 |   0.1182 |  1.253e-02 | 0.1678
+       5 |   0.0395 |  1.067e-02 | 0.0589
+       8 |   0.0058 |  2.963e-03 | 0.0138
+      12 |   0.0004 |  4.281e-04 | 0.0021
+      20 |   0.0000 |  9.832e-06 | 0.0000

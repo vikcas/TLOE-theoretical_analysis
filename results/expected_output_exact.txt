@@ -1,0 +1,119 @@
+=== verify_tloe.py
+
+==== Model J: open tandem (Jackson) ====
+[product form] max|ln pi - additive| (n<=5): 6.4e-15
+[FDT] A=n2: exact t=1,4 = 0.255,1.416 | B=N 0.255,1.416 | B=n2 (per-stage) 0.797,2.164 | B=n1 -0.542,-0.748 | B=dln(pi): max err 1.4e-10
+[FDT] A=N: exact t=1,4 = 0.946,2.918 | B=N 0.946,2.918 | B=n2 (per-stage) 0.797,2.164 | B=n1 0.149,0.755 | B=dln(pi): max err 5.3e-10
+[F sufficiency] Var(B - E[B|N]) / Var(B) = 6.1e-16
+[R two-time] N (x^2,x) asym t=1,4: ['+1.4e-14', '+2.8e-14'] | (n1,n2) cross asym t=1: +5.42e-01
+[R lagged-cov] ||K-K^T||/||K|| (indicator dictionary on N, tau=0.5) = 1.8e-15
+[Onsager] step resp. of N to d ln mu1  vs  of -n1 to d ln lambda (t=1,4): [-0.149 -0.755] [-0.691 -1.502]
+[FDT mu1] A=n1: max|exact - FDT[B=-n1]| = 1.1e-10
+[FDT mu1] A=n2: max|exact - FDT[B=-n1]| = 1.8e-10
+
+==== Model B: tandem with blocking, K2 = 3 ====
+[product form] max|ln pi - additive| (n<=5): 1.8e+00
+[FDT] A=n2: exact t=1,4 = 0.155,0.681 | B=N 0.324,0.892 | B=n2 (per-stage) 0.623,1.042 | B=n1 -0.299,-0.150 | B=dln(pi): max err 2.9e-11
+[FDT] A=N: exact t=1,4 = 0.952,3.067 | B=N 0.922,2.832 | B=n2 (per-stage) 0.471,0.974 | B=n1 0.451,1.858 | B=dln(pi): max err 3.8e-10
+[F sufficiency] Var(B - E[B|N]) / Var(B) = 1.3e-02
+[R two-time] N (x^2,x) asym t=1,4: ['+7.5e-02', '+4.7e-01'] | (n1,n2) cross asym t=1: +1.47e-01
+[R lagged-cov] ||K-K^T||/||K|| (indicator dictionary on N, tau=0.5) = 9.2e-03
+=== verify_independence_and_kl.py
+[3-time] N: max asym=5.8e-16 | positive control (full-state fns): 2.33e-02
+[perm] t=0.5: max|J(2,1.6)-J(1.6,2)| = 8.7e-16
+[perm] t=2.0: max|J(2,1.6)-J(1.6,2)| = 4.5e-16
+[R!=>F] Phi=n1: unexplained Var fraction = 0.690; n1 two-time asym = 1.8e-15
+[static FDT] Var(N) = 6.4444444444
+[KL] d=0.001: KL/d^2=0.0940  (1/2 Var misprediction = 0.0930)
+[KL] d=0.01: KL/d^2=0.1030  (1/2 Var misprediction = 0.0930)
+[KL] d=0.05: KL/d^2=0.1586  (1/2 Var misprediction = 0.0930)
+[KL] d=0.1: KL/d^2=0.2923  (1/2 Var misprediction = 0.0930)
+[trunc] blocking: E[n1]=2.036, P(n1=K1)=8.7e-12
+=== kl_bridge.py
+Jackson d=+0.05: KL=2.7e-16 | d=+0.10: KL=3.2e-16 | d=+0.20: KL=-1.8e-17 | d=-0.20: KL=7.9e-17
+blocking K2=3 d=+0.05: KL=4.0e-04 | d=+0.10: KL=2.9e-03 | d=+0.20: KL=6.3e-02 | d=-0.20: KL=6.7e-04
+=== identifiability.py
+J: t=[0.0, 1.0, 4.0, 16.0, 64.0, 200.0]
+   exact   [0.    0.946 2.918 5.627 6.436 6.444]  (static 6.444)
+   B=B^Y(N)[0.    0.946 2.918 5.627 6.436 6.444]  (static Cov(N,B^Y)=6.444)
+   B=N     [0.    0.946 2.918 5.627 6.436 6.444]  (static Var N=6.444)
+B3: t=[0.0, 1.0, 4.0, 16.0, 64.0, 200.0]
+   exact   [ 0.     0.952  3.067  7.151 10.625 11.092]  (static 11.095)
+   B=B^Y(N)[ 0.     1.018  3.149  7.188 10.629 11.092]  (static Cov(N,B^Y)=11.095)
+   B=N     [0.    0.922 2.832 6.39  9.381 9.781]  (static Var N=9.784)
+=== eigen_check.py
+J: ||K-K^T||/||K|| = 1.8e-15, max|Im kappa| = 0.0e+00, min Re kappa = 0.087
+B: ||K-K^T||/||K|| = 9.2e-03, max|Im kappa| = 0.0e+00, min Re kappa = 0.094
+=== extra_checks.py
+[CK J] t=0.5: max|J(2t) - J(t)P(t)| = 3.24e-03, max J(2t) = 8.65e-02, rel = 0.037
+[CK J] t=1.0: max|J(2t) - J(t)P(t)| = 2.10e-03, max J(2t) = 6.23e-02, rel = 0.034
+[ITS J] slowest implied timescale at tau=0.5,1,2,4,8,16: 9.006, 9.039, 9.086, 9.154, 9.277, 9.519
+[decay J] -dlnC/dt over [100,200]: 0.0786 -> timescale 12.72
+[CK B3] t=0.5: max|J(2t) - J(t)P(t)| = 2.77e-03, max J(2t) = 7.67e-02, rel = 0.036
+[CK B3] t=1.0: max|J(2t) - J(t)P(t)| = 1.68e-03, max J(2t) = 5.59e-02, rel = 0.030
+[ITS B3] slowest implied timescale at tau=0.5,1,2,4,8,16: 13.395, 13.873, 14.660, 15.689, 16.811, 18.054
+[decay B3] -dlnC/dt over [100,200]: 0.0349 -> timescale 28.66
+[gap J] stage gaps (sqrt mu - sqrt lam)^2: stage1 0.1716 (5.83), stage2 0.0702 (14.25)
+[cap] d ln mu1 -> n1: exact t=1,4 = -0.691, -1.502; FDT(B=-n1) = -0.691, -1.502
+[cap] d ln mu1 -> n2: exact t=1,4 = 0.542, 0.748; FDT(B=-n1) = 0.542, 0.748
+[cap] d ln mu1 -> N: exact t=1,4 = -0.149, -0.755; FDT(B=-n1) = -0.149, -0.755
+[3-time J] N: max asym = 5.8e-16; positive control = 2.33e-02
+[3-time B3] N: max asym = 9.3e-03; positive control = 1.99e-02
+[KL] ratios 0.09398, 0.10301; slope 1.004; extrapolated 0.09297; predicted 0.09303
+[xscale] |pred-exact|/|exact|: [5.0893e+01 2.6580e+01 3.9790e+00 4.2200e-01 4.2000e-02]   /|pred|: [1.03637e+02 3.62030e+01 4.14400e+00 4.24000e-01 4.20000e-02]
+=== weber_conditional_check.py
+mu=(2.0,1.6) vs (1.6,2.0): 108 atoms, max |diff| = 4.2e-17, total mass 1.000000000000
+mu=(0.7,3.0) vs (3.0,0.7): 139 atoms, max |diff| = 5.6e-17, total mass 1.000000000000
+=== positive_control_erlang.py
+sanity (M,M) swapped: 4.2e-17
+positive control (E2,M) vs (M,E2): 1.0e-02
+=== stage_controls.py
+K=3 mu=(2.0, 1.6, 2.0) (N,n2) NC=18: max|J-J^T| t=0.5,1,2: 7.6e-17, 7.6e-17, 6.6e-17
+K=3 mu=(2.0, 1.6, 2.0) (N,n2) NC=24: max|J-J^T| t=0.5,1,2: 5.6e-16, 5.5e-16, 4.2e-16
+K=3 mu=(2.0, 2.0, 2.0) (N,n2) NC=18: max|J-J^T| t=0.5,1,2: 1.6e-16, 1.5e-16, 1.5e-16
+K=3 mu=(2.0, 2.0, 2.0) (N,n2) NC=24: max|J-J^T| t=0.5,1,2: 2.9e-16, 2.6e-16, 1.9e-16
+K=3 mu=(2.0, 1.6, 1.8) (N,n2) NC=18: max|J-J^T| t=0.5,1,2: 5.2e-04, 5.5e-04, 4.2e-04
+K=3 mu=(2.0, 1.6, 1.8) (N,n2) NC=24: max|J-J^T| t=0.5,1,2: 5.2e-04, 5.5e-04, 4.2e-04
+K=3 mu=(3.0, 1.3, 2.0) (N,n2) NC=18: max|J-J^T| t=0.5,1,2: 2.1e-03, 2.1e-03, 1.3e-03
+K=3 mu=(3.0, 1.3, 2.0) (N,n2) NC=24: max|J-J^T| t=0.5,1,2: 2.1e-03, 2.0e-03, 1.3e-03
+K=3 mu=(2.0, 1.6, 2.05) (N,n2) NC=18: max|J-J^T| t=0.5,1,2: 1.4e-04, 1.5e-04, 1.1e-04
+K=3 mu=(2.0, 1.6, 2.05) (N,n2) NC=24: max|J-J^T| t=0.5,1,2: 1.4e-04, 1.5e-04, 1.1e-04
+K=4 mu=(2.0, 1.6, 1.6, 2.0) (N,n2) NC=14: max|J-J^T| t=0.5,1,2: 2.3e-03, 2.5e-03, 1.7e-03
+K=4 mu=(2.0, 1.6, 1.6, 2.0) (N,n2) NC=17: max|J-J^T| t=0.5,1,2: 2.3e-03, 2.5e-03, 1.7e-03
+K=4 mu=(2.0, 1.6, 1.6, 2.0) (N,n3) NC=14: max|J-J^T| t=0.5,1,2: 2.3e-03, 2.5e-03, 1.7e-03
+K=4 mu=(2.0, 1.6, 1.6, 2.0) (N,n3) NC=17: max|J-J^T| t=0.5,1,2: 2.3e-03, 2.5e-03, 1.7e-03
+K=5 mu=(2.0, 1.6, 1.8, 2.0, 1.6) (N,n3) NC=11: max|J-J^T| t=0.5,1,2: 4.3e-16, 4.5e-16, 3.2e-16
+K=5 mu=(2.0, 1.6, 1.8, 2.0, 1.6) (N,n3) NC=13: max|J-J^T| t=0.5,1,2: 1.3e-16, 1.4e-16, 1.3e-16
+K=5 mu=(2.0, 1.7, 1.8, 1.7, 2.0) (N,n3) NC=11: max|J-J^T| t=0.5,1,2: 1.0e-16, 1.1e-16, 7.9e-17
+K=5 mu=(2.0, 1.7, 1.8, 1.7, 2.0) (N,n3) NC=13: max|J-J^T| t=0.5,1,2: 2.4e-16, 2.7e-16, 1.9e-16
+law of (N,n3): (2.0, 1.6, 1.8, 2.2) vs (1.6, 2.0, 1.8, 2.2): max diff 1.0e-16
+law of (N,n3): (2.0, 1.6, 1.8, 2.2, 1.7) vs (2.0, 1.6, 1.8, 1.7, 2.2): max diff 1.1e-15
+law of (N,n3): (2.0, 1.6, 1.8, 2.2) vs (1.6, 1.8, 2.0, 2.2): max diff 2.2e-03
+K=5 mu=(2.0, 1.6, 1.8, 1.6, 2.0) (N,n3): max|J-J^T| NC=11,13: 3.4e-16, 7.1e-16
+K=5 mu=(1.6, 2.0, 1.8, 2.0, 1.6) (N,n3): max|J-J^T| NC=11,13: 8.9e-16, 7.9e-16
+K=5 mu=(2.0, 1.6, 1.8, 2.0, 1.7) (N,n3): max|J-J^T| NC=11,13: 7.6e-05, 7.2e-05
+K=5 mu=(2.0, 1.6, 1.8, 2.2, 1.4) (N,n3): max|J-J^T| NC=11,13: 8.8e-05, 8.1e-05
+=== autoscaler_table.py
+alpha=  0.003: tau_int= 331.95 E[N]= 27.60 | (F) unexplained Var(B) by N = 0.428 | (R) ||K-K^T||/||K|| (lag 83.0) = 0.036, max std asym = 0.036 | pred. error sup/chi: B^Y 0.399, B=N 22.304
+alpha=   0.01: tau_int= 135.45 E[N]= 13.29 | (F) unexplained Var(B) by N = 0.506 | (R) ||K-K^T||/||K|| (lag 33.9) = 0.065, max std asym = 0.037 | pred. error sup/chi: B^Y 0.350, B=N 8.041
+alpha=   0.03: tau_int=  43.34 E[N]=  7.59 | (F) unexplained Var(B) by N = 0.618 | (R) ||K-K^T||/||K|| (lag 10.8) = 0.053, max std asym = 0.023 | pred. error sup/chi: B^Y 0.461, B=N 4.009
+alpha=    0.1: tau_int=  11.81 E[N]=  5.32 | (F) unexplained Var(B) by N = 0.616 | (R) ||K-K^T||/||K|| (lag 3.0) = 0.053, max std asym = 0.020 | pred. error sup/chi: B^Y 0.446, B=N 1.902
+alpha=    0.3: tau_int=   5.32 E[N]=  4.52 | (F) unexplained Var(B) by N = 0.483 | (R) ||K-K^T||/||K|| (lag 1.3) = 0.056, max std asym = 0.022 | pred. error sup/chi: B^Y 0.279, B=N 0.933
+alpha=    1.0: tau_int=   4.34 E[N]=  4.14 | (F) unexplained Var(B) by N = 0.325 | (R) ||K-K^T||/||K|| (lag 1.1) = 0.062, max std asym = 0.026 | pred. error sup/chi: B^Y 0.158, B=N 0.606
+alpha=   10.0: tau_int=   4.40 E[N]=  3.93 | (F) unexplained Var(B) by N = 0.208 | (R) ||K-K^T||/||K|| (lag 1.1) = 0.070, max std asym = 0.028 | pred. error sup/chi: B^Y 0.100, B=N 0.437
+alpha=  100.0: tau_int=   4.44 E[N]=  3.90 | (F) unexplained Var(B) by N = 0.192 | (R) ||K-K^T||/||K|| (lag 1.1) = 0.071, max std asym = 0.029 | pred. error sup/chi: B^Y 0.093, B=N 0.414
+=== autoscaler_sufficiency.py
+alpha=0.003: 42 states; closest pair (9,2)-(10,2): 1.59e-03; (8,1) vs (8,2): 0.546
+alpha=0.1: 42 states; closest pair (5,2)-(6,2): 3.43e-04; (8,1) vs (8,2): 0.189
+alpha=100.0: 35 states; closest pair (0,2)-(8,1): 1.38e-07; (8,1) vs (8,2): 0.067
+=== compare_metrics.py
+| J | 7.6 | 2.67 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  (lag 1.90)
+| B3 | 17.0 | 3.19 | 0.013 | 0.027 | 0.010 | 0.108 | 0.008 |  (lag 4.25)
+| B2 | 51.4 | 4.87 | 0.005 | 0.017 | 0.005 | 0.171 | 0.004 |  (lag 12.84)
+=== cross_scale_chain_rule.py
+chain-rule prediction d<n>/dln(a) = -1.11111   (mu_eff=1.6, rho=0.625)
+gamma=   0.3: exact=-2.26263  rel.err=1.04e+00
+gamma=     1: exact=-1.51337  rel.err=3.62e-01
+gamma=    10: exact=-1.15715  rel.err=4.14e-02
+gamma=   100: exact=-1.11582  rel.err=4.24e-03
+gamma=  1000: exact=-1.11158  rel.err=4.25e-04
