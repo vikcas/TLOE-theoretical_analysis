@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/1456695420.svg)](https://doi.org/10.5281/zenodo.24200154)
 
 Scripts behind every number in the paper *Top-Level Operational Equilibrium* (V. Casamayor Pujol, N.-M. Rouska, B. Sedlak).
-[[arXiv link and Zenodo DOI to be added]]
+
 
 Requirements: Python 3.10+, numpy, scipy, matplotlib (figure only): `pip install -r requirements.txt`.
 Run everything with `./run_all.sh` (exact checks: a few minutes; finite-sample study: about 1–2 h of single-core time).
