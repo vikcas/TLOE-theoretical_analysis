@@ -1,5 +1,7 @@
 # Top-Level Operational Equilibrium (TLOE): reproduction scripts
 
+[![DOI](https://zenodo.org/badge/1456695420.svg)](https://doi.org/10.5281/zenodo.24200154)
+
 Scripts behind every number in the paper *Top-Level Operational Equilibrium* (V. Casamayor Pujol, N.-M. Rouska, B. Sedlak).
 [[arXiv link and Zenodo DOI to be added]]
 
@@ -50,6 +52,8 @@ Exact values: sparse linear solves and matrix-exponential actions; derivatives b
 The authors used Claude to assist with writing the verification and simulation scripts. The authors reviewed and verified all content and take full responsibility for it.
 
 ### License: MIT
+
+
 
 
 
